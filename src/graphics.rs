@@ -142,3 +142,22 @@ pub use texture_array::TextureArray;
 pub use transformation::Transformation;
 pub use vector::Vector;
 pub use window::{CursorIcon, Frame, Settings as WindowSettings, Window};
+
+mod backend_gfx;
+#[cfg(feature = "opengl")]
+use backend_gfx as gpu;
+
+#[cfg(any(
+    feature = "vulkan",
+    feature = "metal",
+    feature = "dx11",
+    feature = "dx12",
+))]
+mod backend_wgpu;
+#[cfg(any(
+    feature = "vulkan",
+    feature = "metal",
+    feature = "dx11",
+    feature = "dx12",
+))]
+use backend_wgpu as gpu;
