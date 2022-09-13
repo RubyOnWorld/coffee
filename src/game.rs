@@ -106,6 +106,9 @@ pub trait Game {
     /// [`Gpu`]: graphics/struct.Gpu.html
     fn interact(&mut self, _input: &mut Self::Input, _window: &mut Window) {}
 
+        fn load(window: &Window) -> Task<Self>
+    where
+        Self: Sized;
     /// Updates the [`Game`].
     ///
     /// All your game logic should live here.
